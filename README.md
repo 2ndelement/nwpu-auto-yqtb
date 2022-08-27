@@ -23,7 +23,7 @@
 
 - 点击 `Action` 启用 `自动疫情填报` 工作流即可
 
-> 更改 [workflow yaml](nwpu-auto-yqtb/blob/main/.github/workflows/main.yml) 中 cron 项即可填报更改时间
+> 更改 [workflow yaml](.github/workflows/main.yml) 中 cron 项即可填报更改时间
 > ``` yaml
 > schedule:
 >    - cron: '0 0 * * *' # 此时间为 'UTF时间', +8h 后为 '北京时间'
