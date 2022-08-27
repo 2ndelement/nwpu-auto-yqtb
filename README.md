@@ -16,7 +16,7 @@
 
 ```json
 [
-  ["uname1","passwd1"], # ["学号","密码"] 的格式
+  ["uname1","passwd1"],
   ["uname2","passwd2"]
 ]
 ```
