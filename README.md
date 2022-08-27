@@ -12,7 +12,7 @@
 
 - 填写 `Name`: `config`
 
-- 填写 `Value`: 仓库中 [config.json](config.json) 的示例, **如果多个用户签到就多项列表,否则一项即可**
+- 填写 `Value`: 仓库中 [config.json](config.json) 的示例, **如果多个用户签到就填写多项列表,否则一项即可,不要重复填写同一个用户**
 
 ```json
 [
