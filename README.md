@@ -23,6 +23,8 @@
 
 - 点击 `Action` 启用 `自动疫情填报` 工作流即可
 
+## 提示
+
 > 更改 [workflow yaml](.github/workflows/main.yml) 中 cron 项即可填报更改时间
 > ``` yaml
 > schedule:
