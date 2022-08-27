@@ -8,7 +8,7 @@
 
 - fork 本仓库
 
-- 依次点击 Github 仓库 `Setting` => `Secrets`(侧边栏) => `Actions` => `New repository secret`
+- 依次点击 Github 仓库 `Settings` => `Secrets`(侧边栏) => `Actions` => `New repository secret`
 
 - 填写 `Name`: `config`
 
