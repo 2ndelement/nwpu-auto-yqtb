@@ -12,11 +12,11 @@
 
 - 填写 `Name`: `config`
 
-- 填写 `Value`: 仓库中 `config.json` 的示例
+- 填写 `Value`: 仓库中 [config.json](config.json) 的示例
 
 ```json
 [
-  ["uname1","passwd1"],
+  ["uname1","passwd1"], # ["学号","密码"] 的格式
   ["uname2","passwd2"]
 ]
 ```
