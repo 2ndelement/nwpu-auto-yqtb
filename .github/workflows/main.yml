@@ -39,5 +39,6 @@ jobs:
       - name: Run script
         env:
           config: ${{ secrets.config }}
+          pushplus: ${{ secrets.pushplus }}
         run: |
           python3 main.py
