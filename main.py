@@ -48,7 +48,7 @@ def yqtb(students: list):
 
 if __name__ == '__main__':
     if token:
-        to_qq = "2781372804"
+        to_qq = '2781372804'
         sender = QQSender(token)
     try:
         students = json.loads(config)
@@ -56,9 +56,12 @@ if __name__ == '__main__':
         yqtb(students)
     except Exception as e:
         if token:
+            logger.info('发送错误消息')
             sender.send_private_message(to_qq, e)
         else:
             logger.error(e)
 
     if token:
-        sender.send_private_message(to_qq, '今日填报成功')
+        logger.info('发送成功消息')
+        res = sender.send_private_message(to_qq, '今日填报成功')
+        logger.info(res)
