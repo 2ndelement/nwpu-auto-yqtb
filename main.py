@@ -13,7 +13,7 @@ config = env_dist.get("config")
 logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
-token = env_dist.get("config")
+token = env_dist.get("token")
 url = r'https://yqtb.nwpu.edu.cn/wx/ry/jrsb.jsp'
 driver_path = ChromeDriverManager().install()
 chrome_options = Options()
@@ -64,4 +64,3 @@ if __name__ == '__main__':
     if token:
         logger.info('发送成功消息')
         res = sender.send_private_message(to_qq, '今日填报成功')
-        logger.info(res)
