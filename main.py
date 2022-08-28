@@ -66,7 +66,7 @@ if __name__ == '__main__':
     students = json.loads(config)
     logger.info(f'加载的用户列表: {[username for username, _ in students]}')
     yqtb(students)
-    if len(pushplus_token) == 0:
+    if not pushplus_token:
         logger.info("不存在 PUSHPLUS ，请重新检查")
     else :
         pushplus(pushplus_token)
