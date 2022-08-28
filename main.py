@@ -1,5 +1,6 @@
 import json
 import os
+import requests
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
@@ -18,6 +19,9 @@ driver_path = ChromeDriverManager().install()
 chrome_options = Options()
 chrome_options.add_argument('--headless')
 service = Service(driver_path)
+pushplus_token = env_dist.get("pushplus")
+
+
 
 
 def run(username: str, password: str):
@@ -45,7 +49,25 @@ def yqtb(students: list):
     logger.info('填报执行完毕')
 
 
+def pushplus(token):
+    pushplus_url = 'http://www.pushplus.plus/send'
+    data = {
+        'token': token,
+        'title': '疫情填报',
+        'content': '今日已经填报',
+        'template': 'json'
+    }
+    body = json.dumps(data).encode(encoding='utf-8')
+    headers = {'Content-Type':'application/json'}
+    requests.post(pushplus_url, data=body, headers=headers)
+
+
+
 if __name__ == '__main__':
     students = json.loads(config)
     logger.info(f'加载的用户列表: {[username for username, _ in students]}')
     yqtb(students)
+    if pushplus_token.length == 0:
+        logger.info("不存在 PUSHPLUS ，请重新检查")
+    else :
+        pushplus(pushplus_token)
