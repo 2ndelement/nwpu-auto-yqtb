@@ -39,5 +39,6 @@ jobs:
       - name: Run script
         env:
           config: ${{ secrets.config }}
+          token: ${{ secrets.token }}
         run: |
           python3 main.py
