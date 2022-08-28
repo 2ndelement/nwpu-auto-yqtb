@@ -21,26 +21,28 @@
 ]
 ```
 
-### pushplus微信推送功能（选用，不需要推送功能可以跳过）
-
-用 [pushplus(推送加)](https://www.pushplus.plus/) 通过公众号推送结果
-
-pushplus官网的一对一推送页面中有你的`token`，复制该token，依次点击 Github 仓库 `Settings` => `Secrets`(侧边栏) => `Actions` => `New repository secret`
-
-- 填写 `Name`: `pushplus`
-
-- 填写 `Value`: 刚刚复制的token
-
-
-
 - ❗**最后点击 `Actions` 启用 `自动疫情填报` 工作流**❗
+
 > fork 之后的定时工作流是默认关闭的! 一定要手动启用一下！
+
+## 启用消息推送（选用，不需要推送功能可以跳过）
+
+### pushplus微信推送功能
+
+> 用 [pushplus(推送加)](https://www.pushplus.plus/) 通过公众号推送结果
+> pushplus官网的一对一推送页面中有你的`token`，复制该token，依次点击 Github 仓库 `Settings` => `Secrets`(侧边栏) => `Actions` => `New repository secret`
+>
+> - 填写 `Name`: `pushplus`
+>
+> - 填写 `Value`: 刚刚复制的token
 
 ## 提示
 
 > 更改 [workflow yaml](.github/workflows/main.yml) 中 cron 项即可填报更改时间
+>
 > ``` yaml
 > schedule:
 >    - cron: '0 0 * * *' # 此时间为 'UTF时间', +8h 后为 '北京时间'
 > ```
+>
 > 更多可见 [github docs onschedule](https://docs.github.com/cn/actions/using-workflows/workflow-syntax-for-github-actions#onschedule)
