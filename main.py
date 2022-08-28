@@ -52,8 +52,7 @@ def yqtb(students: list):
 def pushplus(token):
     pushplus_url = 'http://www.pushplus.plus/send'
     data = {
-        'token': token,
-        'title': '疫情填报',
+        'token': token,           
         'content': '今日已经填报',
         'template': 'json'
     }
@@ -67,7 +66,7 @@ if __name__ == '__main__':
     students = json.loads(config)
     logger.info(f'加载的用户列表: {[username for username, _ in students]}')
     yqtb(students)
-    if pushplus_token.length == 0:
+    if len(pushplus_token) == 0:
         logger.info("不存在 PUSHPLUS ，请重新检查")
     else :
         pushplus(pushplus_token)
