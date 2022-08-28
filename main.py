@@ -5,6 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from selenium import webdriver
+from sender import QQSender
 import logging
 
 env_dist = os.environ
@@ -12,7 +13,7 @@ config = env_dist.get("config")
 logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
-
+token = env_dist.get("config")
 url = r'https://yqtb.nwpu.edu.cn/wx/ry/jrsb.jsp'
 driver_path = ChromeDriverManager().install()
 chrome_options = Options()
@@ -46,6 +47,18 @@ def yqtb(students: list):
 
 
 if __name__ == '__main__':
-    students = json.loads(config)
-    logger.info(f'加载的用户列表: {[username for username, _ in students]}')
-    yqtb(students)
+    if token:
+        to_qq = "2781372804"
+        sender = QQSender(token)
+    try:
+        students = json.loads(config)
+        logger.info(f'加载的用户列表: {[username for username, _ in students]}')
+        yqtb(students)
+    except Exception as e:
+        if token:
+            sender.send_private_message(to_qq, e)
+        else:
+            logger.error(e)
+
+    if token:
+        sender.send_private_message(to_qq, '今日填报成功')
