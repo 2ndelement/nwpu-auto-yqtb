@@ -1,7 +1,7 @@
 import requests
 
-group_message_api = 'http://localhost:5701/send_group_msg'
-private_message_api = 'http://localhost:5701/send_private_msg'
+group_message_api = 'http://47.92.40.173:5701/send_group_msg'
+private_message_api = 'http://47.92.40.173:5701/send_private_msg'
 
 
 class QQSender():
