@@ -24,7 +24,8 @@
 - ❗**最后点击 `Actions` 启用 `自动疫情填报` 工作流**❗
 
 > fork 之后的定时工作流是默认关闭的! 一定要手动启用一下！
-
+>
+> 打卡可能会失败, 建议开启消息推送, 本项目仅提供参考, 因使用本项目导致的漏填本项目概不负责
 ## 启用消息推送（选用，不需要推送功能可以跳过）
 
 ### pushplus微信推送功能
@@ -44,5 +45,5 @@
 > schedule:
 >    - cron: '0 0 * * *' # 此时间为 'UTF时间', +8h 后为 '北京时间'
 > ```
->
+> 由于定时任务由Github调度, 实际执行时间可能延迟1-2h不定
 > 更多可见 [github docs onschedule](https://docs.github.com/cn/actions/using-workflows/workflow-syntax-for-github-actions#onschedule)
