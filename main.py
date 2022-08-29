@@ -58,9 +58,10 @@ if __name__ == '__main__':
         if token:
             logger.info('发送错误消息')
             sender.send_private_message(to_qq, e)
+            exit()
         else:
             logger.error(e)
-
+            exit()
     if token:
         logger.info('发送成功消息')
         res = sender.send_private_message(to_qq, '今日填报成功')
