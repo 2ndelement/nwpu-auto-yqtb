@@ -14,28 +14,39 @@
 
 - 填写 `Value`: 仓库中 [config.json](config.json) 的示例, **如果多个用户签到就填写多项列表,否则一项即可,不要重复填写同一个用户**
 
+单人: 
 ```json
 [
-  ["uname1","passwd1"],
-  ["uname2","passwd2"]
+  ["202030xxx1","yourpassword"]
+]
+```
+多人:
+```json
+[
+  ["202030xxx1","yourpassword"],
+  ["202030xxx2","hispassword"],
+  ["202030xxx3","herpassword"]
 ]
 ```
 
-- ❗**最后点击 `Actions` 启用 `自动疫情填报` 工作流**❗
+- **❗重要❗** 最后点击 `Actions` => 选择`自动疫情填报` 工作流 => `Enable workflow`
 
-> fork 之后的定时工作流是默认关闭的! 一定要手动启用一下！
->
-> 打卡可能会失败, 建议开启消息推送, 本项目仅提供参考, 因使用本项目导致的一切不良后果请使用者自行承担
+> fork 之后的定时工作流是默认关闭的, 一定要手动启用一下, 不然不会自动执行
+
+
 ## 启用消息推送（选用，不需要推送功能可以跳过）
 
 ### pushplus微信推送功能
 
-> 用 [pushplus(推送加)](https://www.pushplus.plus/) 通过公众号推送结果
-> pushplus官网的一对一推送页面中有你的`token`，复制该token，依次点击 Github 仓库 `Settings` => `Secrets`(侧边栏) => `Actions` => `New repository secret`
->
-> - 填写 `Name`: `pushplus`
->
-> - 填写 `Value`: 刚刚复制的token
+用 [pushplus(推送加)](https://www.pushplus.plus/) 通过公众号推送结果:
+
+- 登录pushplus官网后, 选择一对一推送页面, 按照网站的说明获取你的`token`.
+ 
+- 复制该token，依次点击 Github 仓库 `Settings` => `Secrets`(侧边栏) => `Actions` => `New repository secret`
+
+- 填写 `Name`: `pushplus`
+
+- 填写 `Value`: 刚刚复制的token
 
 ## 提示
 
@@ -47,3 +58,8 @@
 > ```
 > 由于定时任务由Github调度, 实际执行时间可能延迟1-2h不定
 > 更多可见 [github docs onschedule](https://docs.github.com/cn/actions/using-workflows/workflow-syntax-for-github-actions#onschedule)
+
+
+## 声明
+- 打卡可能会失败, 建议开启消息推送.
+- 本项目仅提供参考, 因使用本项目导致的一切不良后果请使用者自行承担
