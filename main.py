@@ -31,10 +31,10 @@ def run(username: str, password: str):
     password_element = driver.find_element(By.ID, 'password')
     password_element.send_keys(password)
     driver.find_element(By.NAME, 'submit').click()
-    try:
-        driver.find_element(By.PARTIAL_LINK_TEXT, '我知道了').click()
-    except Exception as e:
-        pass
+    # try:
+    #    driver.find_element(By.PARTIAL_LINK_TEXT, '我知道了').click()
+    # except Exception as e:
+    #    pass
     js = 'go_sub();go_subfx();document.querySelector("label.weui-cell.weui-cell_active.weui-check__label").click();save();savefx()'
     time.sleep(1)
     driver.execute_script(js)
