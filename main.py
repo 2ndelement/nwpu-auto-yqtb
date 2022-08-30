@@ -1,3 +1,4 @@
+import time
 import json
 import os
 import requests
@@ -22,8 +23,6 @@ service = Service(driver_path)
 pushplus_token = env_dist.get("pushplus")
 
 
-
-
 def run(username: str, password: str):
     driver = webdriver.Chrome(service=service, options=chrome_options)
     driver.get(url)
@@ -35,38 +34,62 @@ def run(username: str, password: str):
     try:
         driver.find_element(By.PARTIAL_LINK_TEXT, '我知道了').click()
     except Exception as e:
-        logger.error(e)
-    js = 'go_sub();document.querySelector("label.weui-cell.weui-cell_active.weui-check__label").click();save()'
+        pass
+    js = 'go_sub();go_subfx();document.querySelector("label.weui-cell.weui-cell_active.weui-check__label").click();save();savefx()'
+    time.sleep(1)
     driver.execute_script(js)
+    fail_info = None
+    try:
+        time.sleep(3)
+        fail_info = driver.find_element(By.PARTIAL_LINK_TEXT, '确定')
+    except Exception as e:
+        pass
     driver.close()
-    logger.info(f'{username} 已完成填报')
+    if fail_info:
+        return False
+    else:
+        logger.info(f'{username} 已完成填报')
+        return True
 
 
 def yqtb(students: list):
     logger.info('开始执行填报...')
+    all_num = len(students)
+    cur_num = 0
+    suc_num = 0
     for username, password in students:
-        run(username, password)
+        cur_num += 1
+        if run(username, password):
+            suc_num += 0
+        logger.info(
+            f'{username} 填报失败, 可能是因为不在允许时间内; ({all_num}个任务中的第{cur_num}个,共成功{suc_num}个)')
     logger.info('填报执行完毕')
+    if suc_num < all_num:
+        raise Exception("填报过程异常")
 
 
-def pushplus(token):
+def pushplus(msg: str):
     pushplus_url = 'http://www.pushplus.plus/send'
     data = {
-        'token': token,           
-        'content': '今日已经填报',
+        'token': pushplus_token,
+        'content': msg,
         'template': 'json'
     }
     body = json.dumps(data).encode(encoding='utf-8')
-    headers = {'Content-Type':'application/json'}
+    headers = {'Content-Type': 'application/json'}
     requests.post(pushplus_url, data=body, headers=headers)
 
 
-
 if __name__ == '__main__':
-    students = json.loads(config)
-    logger.info(f'加载的用户列表: {[username for username, _ in students]}')
-    yqtb(students)
-    if not pushplus_token:
-        logger.info("不存在 PUSHPLUS ，请重新检查")
-    else :
-        pushplus(pushplus_token)
+    try:
+        students = json.loads(str(config))
+        logger.info(f'加载的用户列表: {[username for username, _ in students]}')
+        yqtb(students)
+    except Exception as e:
+        if pushplus_token:
+            logger.info('发送错误消息')
+            pushplus(str(e))
+            raise e
+        else:
+            logger.error(e)
+            raise e
