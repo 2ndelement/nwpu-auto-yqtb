@@ -39,11 +39,7 @@ def run(username: str, password: str):
     time.sleep(1)
     driver.execute_script(js)
     fail_info = None
-    try:
-        time.sleep(3)
-        fail_info = driver.find_element(By.PARTIAL_LINK_TEXT, '确定')
-    except Exception as e:
-        pass
+    pass # 待出现
     driver.close()
     if fail_info:
         return False
