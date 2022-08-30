@@ -24,44 +24,50 @@ pushplus_token = env_dist.get("pushplus")
 
 
 def run(username: str, password: str):
-    driver = webdriver.Chrome(service=service, options=chrome_options)
+  driver = webdriver.Chrome(service=service, options=chrome_options)
     driver.get(url)
     username_element = driver.find_element(By.ID, 'username')
     username_element.send_keys(username)
     password_element = driver.find_element(By.ID, 'password')
     password_element.send_keys(password)
     driver.find_element(By.NAME, 'submit').click()
-    # try:
-    #    driver.find_element(By.PARTIAL_LINK_TEXT, '我知道了').click()
-    # except Exception as e:
-    #    pass
+#     try:
+#         driver.find_element(
+#             By.CSS_SELECTOR, 'button.sw-button.btn.sw-button--primary.sw-button--big.is-round').click()
+#         driver.find_element(By.PARTIAL_LINK_TEXT, '我知道了').click()
+#     except Exception as e:
+#         pass
     js = 'go_sub();go_subfx();document.querySelector("label.weui-cell.weui-cell_active.weui-check__label").click();save();savefx()'
-    time.sleep(1)
     driver.execute_script(js)
-    fail_info = None
-    pass # 待出现
+    fail = None
+#     try:
+#         time.sleep(3)
+#         fail_info = driver.find_element(By.PARTIAL_LINK_TEXT, '确定')
+#     except Exception as e:
+#         pass
     driver.close()
-    if fail_info:
+    if fail:
         return False
     else:
-        logger.info(f'{username} 已完成填报')
         return True
 
 
 def yqtb(students: list):
+  
     logger.info('开始执行填报...')
     all_num = len(students)
     cur_num = 0
     suc_num = 0
     for username, password in students:
-        cur_num += 1
+        cur_num += 1;
         if run(username, password):
-            suc_num += 0
-        logger.info(
-            f'{username} 填报失败, 可能是因为不在允许时间内; ({all_num}个任务中的第{cur_num}个,共成功{suc_num}个)')
+            suc_num += 1;
+            logger.info(f'{username} 填报失败; ({all_num}个任务中的第{cur_num}个,共成功{suc_num}个)')
+        else:
+            logger.info(f'{username} 填报成功; ({all_num}个任务中的第{cur_num}个,共成功{suc_num}个)')
     logger.info('填报执行完毕')
     if suc_num < all_num:
-        raise Exception("填报过程异常")
+        raise Exception("填报过程出现异常")
 
 
 def pushplus(msg: str):
