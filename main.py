@@ -63,10 +63,10 @@ def yqtb(students: list):
         if run(username, password):
             suc_num += 1
             logger.info(
-                f'{username} 填报失败; ({all_num}个任务中的第{cur_num}个,共成功{suc_num}个)')
+                f'{username} o填报成功o; ({all_num}个任务中的第{cur_num}个,共成功{suc_num}个)')
         else:
             logger.info(
-                f'{username} 填报成功; ({all_num}个任务中的第{cur_num}个,共成功{suc_num}个)')
+                f'{username} x填报失败x; ({all_num}个任务中的第{cur_num}个,共成功{suc_num}个)')
     logger.info('填报执行完毕')
     if suc_num < all_num:
         raise Exception("填报过程出现异常")
