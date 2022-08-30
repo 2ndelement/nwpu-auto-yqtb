@@ -38,11 +38,11 @@ def run(username: str, password: str):
     driver.execute_script(js)
     fail_info = None
     try:
-        fail_info = driver.find_element(By.PARTIAL_LINK_TEXT, '提交失败，请稍后再试')
+        fail_info = driver.find_element(By.PARTIAL_LINK_TEXT, '确定')
     except Exception as e:
         pass
     if fail_info:
-        logger.info(f'{username} 填报失败')
+        logger.info(f'{username} 填报失败, 可能是因为不在允许时间内')
     else:
         logger.info(f'{username} 已完成填报')
     driver.close()
