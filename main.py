@@ -24,7 +24,7 @@ pushplus_token = env_dist.get("pushplus")
 
 
 def run(username: str, password: str):
-  driver = webdriver.Chrome(service=service, options=chrome_options)
+    driver = webdriver.Chrome(service=service, options=chrome_options)
     driver.get(url)
     username_element = driver.find_element(By.ID, 'username')
     username_element.send_keys(username)
@@ -53,18 +53,20 @@ def run(username: str, password: str):
 
 
 def yqtb(students: list):
-  
+
     logger.info('开始执行填报...')
     all_num = len(students)
     cur_num = 0
     suc_num = 0
     for username, password in students:
-        cur_num += 1;
+        cur_num += 1
         if run(username, password):
-            suc_num += 1;
-            logger.info(f'{username} 填报失败; ({all_num}个任务中的第{cur_num}个,共成功{suc_num}个)')
+            suc_num += 1
+            logger.info(
+                f'{username} 填报失败; ({all_num}个任务中的第{cur_num}个,共成功{suc_num}个)')
         else:
-            logger.info(f'{username} 填报成功; ({all_num}个任务中的第{cur_num}个,共成功{suc_num}个)')
+            logger.info(
+                f'{username} 填报成功; ({all_num}个任务中的第{cur_num}个,共成功{suc_num}个)')
     logger.info('填报执行完毕')
     if suc_num < all_num:
         raise Exception("填报过程出现异常")
