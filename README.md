@@ -14,22 +14,22 @@
 
 - 填写 `Value`: 仓库中 [config.json](config.json) 的示例, **如果多个用户签到就填写多项列表,否则一项即可,不要重复填写同一个用户**
 
-单人: 
-```json
-[
-  ["202030xxx1","yourpassword"]
-]
-```
-多人:
-```json
-[
-  ["202030xxx1","yourpassword"],
-  ["202030xxx2","hispassword"],
-  ["202030xxx3","herpassword"]
-]
-```
+> 单人: 
+> ```json
+> [
+>   ["username","password"]
+> ]
+> ```
+> 多人:
+> ```json
+> [
+>   ["usernamea","passworda"],
+>   ["usernameb","passwordb"],
+>   ["usernamec","passwordc"]
+> ]
+> ```
 
-- **❗重要❗** 最后点击 `Actions` => 选择`自动疫情填报` 工作流 => `Enable workflow`
+- **❗重要❗** 最后点击 `Actions` => 选择工作流 `自动疫情填报`  => `Enable workflow`
 
 - 推荐先手动运行一遍工作流查看是否能正确执行
 
