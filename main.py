@@ -97,3 +97,5 @@ if __name__ == '__main__':
         else:
             logger.error(e)
             raise e
+    if pushplus_token:
+            pushplus('今日填报成功')
