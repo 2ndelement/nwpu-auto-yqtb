@@ -40,5 +40,6 @@ jobs:
         env:
           config: ${{ secrets.config }}
           token: ${{ secrets.token }}
+          pushplus: ${{ secrets.pushplus }}
         run: |
           python3 main.py
