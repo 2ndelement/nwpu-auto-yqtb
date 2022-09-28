@@ -24,32 +24,21 @@ pushplus_token = env_dist.get("pushplus")
 
 
 def run(username: str, password: str):
-    driver = webdriver.Chrome(service=service, options=chrome_options)
-    driver.get(url)
-    username_element = driver.find_element(By.ID, 'username')
-    username_element.send_keys(username)
-    password_element = driver.find_element(By.ID, 'password')
-    password_element.send_keys(password)
-    driver.find_element(By.NAME, 'submit').click()
-#     try:
-#         driver.find_element(
-#             By.CSS_SELECTOR, 'button.sw-button.btn.sw-button--primary.sw-button--big.is-round').click()
-#         driver.find_element(By.PARTIAL_LINK_TEXT, '我知道了').click()
-#     except Exception as e:
-#         pass
-    js = 'go_sub();go_subfx();document.querySelector("label.weui-cell.weui-cell_active.weui-check__label").click();save();savefx()'
-    driver.execute_script(js)
-    fail = None
-#     try:
-#         time.sleep(3)
-#         fail_info = driver.find_element(By.PARTIAL_LINK_TEXT, '确定')
-#     except Exception as e:
-#         pass
-    driver.close()
-    if fail:
+    try:
+        driver = webdriver.Chrome(service=service, options=chrome_options)
+        driver.get(url)
+        username_element = driver.find_element(By.ID, 'username')
+        username_element.send_keys(username)
+        password_element = driver.find_element(By.ID, 'password')
+        password_element.send_keys(password)
+        driver.find_element(By.NAME, 'submit').click()
+        js = 'go_sub();go_subfx();document.querySelector("label.weui-cell.weui-cell_active.weui-check__label").click();save();savefx()'
+        driver.execute_script(js)
+        driver.close()
+    except Exception as e:
+        logger.error(e)
         return False
-    else:
-        return True
+    return True
 
 
 def yqtb(students: list):
