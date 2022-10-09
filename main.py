@@ -27,11 +27,13 @@ def run(username: str, password: str):
     try:
         driver = webdriver.Chrome(service=service, options=chrome_options)
         driver.get(url)
+        driver.find_element(By.XPATH,
+                            '//*[@id="vue_main"]/div[2]/div[3]/div/div[2]/div[3]/div/div/div[1]/ul/li[3]').click()
         username_element = driver.find_element(By.ID, 'username')
         username_element.send_keys(username)
         password_element = driver.find_element(By.ID, 'password')
         password_element.send_keys(password)
-        driver.find_element(By.NAME, 'submit').click()
+        driver.find_element(By.XPATH, '//*[@id="fm1"]/div[4]/div/input[6]').click()
         js = 'go_sub();go_subfx();document.querySelector("label.weui-cell.weui-cell_active.weui-check__label").click();save();savefx()'
         driver.execute_script(js)
         driver.close()
@@ -42,7 +44,6 @@ def run(username: str, password: str):
 
 
 def yqtb(students: list):
-
     logger.info('开始执行填报...')
     all_num = len(students)
     cur_num = 0
@@ -87,4 +88,4 @@ if __name__ == '__main__':
             logger.error(e)
             raise e
     if pushplus_token:
-            pushplus('今日填报成功')
+        pushplus('今日填报成功')
