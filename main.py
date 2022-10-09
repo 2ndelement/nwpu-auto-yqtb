@@ -9,6 +9,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium import webdriver
 import logging
 
+load_wait_timeout = 5
 env_dist = os.environ
 config = env_dist.get("config")
 logging.basicConfig(level=logging.INFO,
@@ -34,6 +35,7 @@ def run(username: str, password: str):
         password_element = driver.find_element(By.ID, 'password')
         password_element.send_keys(password)
         driver.find_element(By.XPATH, '//*[@id="fm1"]/div[4]/div/input[6]').click()
+        time.sleep(load_wait_timeout)
         js = 'go_sub();go_subfx();document.querySelector("label.weui-cell.weui-cell_active.weui-check__label").click();save();savefx()'
         driver.execute_script(js)
         driver.close()
