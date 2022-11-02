@@ -1,12 +1,14 @@
-由于你瓜翱翔门户加了异常环境手机号验证,本项目暂弃用
+## 通知!
+由于你瓜翱翔门户加了异常环境手机号验证,对于首次登录的IP需要进行验证,本项目暂时不可用,请谨慎使用.
+
+目前仍可自行部署, 若云服务器运行请尝试将 `main.py` 中的config更改为原需求`Value`的json文档, linux服务器可尝试使用`crontab`, 安卓移动设备部署请尝试`tasktomb` 
 
 
 # NPWY-AUTO-YQTB
 
 使用 GitHub Acition 进行西北工业大学自动疫情填报
 
-## 通知!
-**由于翱翔门户 开启了账号安全检查 请自行先用pc端登录进行一遍安全验证才能继续填报**
+
 
 [![nwpu-auto-yqtb](https://socialify.git.ci/2ndelement/nwpu-auto-yqtb/image?description=1&descriptionEditable=%20GitHub%20Acition%20%E8%A5%BF%E5%8C%97%E5%B7%A5%E4%B8%9A%E5%A4%A7%E5%AD%A6%E8%87%AA%E5%8A%A8%E7%96%AB%E6%83%85%E5%A1%AB%E6%8A%A5&font=Bitter&issues=1&language=1&name=1&owner=1&stargazers=1&theme=Light)](https://github.com/2ndelement/nwpu-auto-yqtb/stargazers)
 
